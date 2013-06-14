@@ -1,0 +1,21 @@
+{
+    "name": "clicktrend/frontend-validation-bundle",
+    "version": "0.1",
+    "description": "jQuery frontend validation as symfony2 bundle",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Kadir Yuecel",
+            "email": "ky@clicktrend.de"
+        }
+    ],
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/framework-bundle": ">=2.0,<2.4-dev",
+    },
+    "autoload": {
+        "psr-0": { "Clicktrend\\Bundle\\FrontendValidationBundle": "" }
+    },
+    "target-dir": "Clicktrend/Bundle/FrontendValidationBundle",
+    "minimum-stability": "dev"
+}
