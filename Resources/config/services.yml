@@ -1,11 +1,11 @@
 parameters:
-    ctm_validation.validator.mapper.class: Clicktrend\FrontendValidationBundle\Component\Validator\Mapper
-    ctm_validation.frontend_validation_type_extension.class: Clicktrend\FrontendValidationBundle\Form\Type\FrontendValidationTypeExtension
+    ctm_validation.validator.mapper.class: Clicktrend\Bundle\FrontendValidationBundle\Component\Validator\Mapper
+    ctm_validation.frontend_validation_type_extension.class: Clicktrend\Bundle\FrontendValidationBundle\Form\Type\FrontendValidationTypeExtension
     ctm_validation.constraints.map:
-        Symfony\Component\Validator\Constraints\NotBlank: Clicktrend\FrontendValidationBundle\Component\Validator\Constraints\NotBlank
-        Symfony\Component\Validator\Constraints\Length: Clicktrend\FrontendValidationBundle\Component\Validator\Constraints\Length
-        Symfony\Component\Validator\Constraints\Email: Clicktrend\FrontendValidationBundle\Component\Validator\Constraints\Email
-        Symfony\Component\Validator\Constraints\Regex: Clicktrend\FrontendValidationBundle\Component\Validator\Constraints\Regex
+        Symfony\Component\Validator\Constraints\NotBlank: Clicktrend\Bundle\FrontendValidationBundle\Component\Validator\Constraints\NotBlank
+        Symfony\Component\Validator\Constraints\Length: Clicktrend\Bundle\FrontendValidationBundle\Component\Validator\Constraints\Length
+        Symfony\Component\Validator\Constraints\Email: Clicktrend\Bundle\FrontendValidationBundle\Component\Validator\Constraints\Email
+        Symfony\Component\Validator\Constraints\Regex: Clicktrend\Bundle\FrontendValidationBundle\Component\Validator\Constraints\Regex
         
 services:
     ctm_validation.validator.mapper:
