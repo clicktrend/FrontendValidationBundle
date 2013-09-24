@@ -23,36 +23,34 @@ class FrontendValidationTypeExtension extends AbstractTypeExtension {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $parentBuilder = $builder->getParent();
-        if($parentBuilder instanceof FormBuilderInterface) {
-            $dataClass = $parentBuilder->getOption('data_class');
 
-            if($dataClass !== NULL) {
+        $dataClass = $builder->getOption('data_class');
 
-                $validationGroups = $parentBuilder->getOption('validation_groups');
+        if($dataClass !== NULL) {
 
-                $metaData = $this->validator->getMetadataFactory()->getMetadataFor($dataClass);
+            $validationGroups = $builder->getOption('validation_groups');
 
-                if($metaData->hasMemberMetadatas($builder->getName())) {
-                    $datas = $metaData->getMemberMetadatas($builder->getName());
+            $metaData = $this->validator->getMetadataFactory()->getMetadataFor($dataClass);
 
-                    // TODO: If there is no validation group defined catch error
-                    foreach ($validationGroups as $group) {
-                        foreach ($datas as $data) {
-                            
-                            if(isset($data->constraintsByGroup[$group])) {
-                                $constraints = $data->constraintsByGroup[$group];
+            if($metaData->hasMemberMetadatas($builder->getName())) {
+                $datas = $metaData->getMemberMetadatas($builder->getName());
 
-                                foreach ($constraints as $constraint) {
+                // TODO: If there is no validation group defined catch error
+                foreach ($validationGroups as $group) {
+                    foreach ($datas as $data) {
 
-                                    $newConstraint = $this->mapper->find($constraint);
-                                    
-                                    if($newConstraint !== NULL) {
-                                        $attrs = (array) $newConstraint->getDataAttributes();
-                                        $builder->setAttribute('attr', (array) $builder->getAttribute('attr') + $attrs);
-                                    } else {
-                                        echo get_class($constraint);
-                                    }
+                        if(isset($data->constraintsByGroup[$group])) {
+                            $constraints = $data->constraintsByGroup[$group];
+
+                            foreach ($constraints as $constraint) {
+
+                                $newConstraint = $this->mapper->find($constraint);
+
+                                if($newConstraint !== NULL) {
+                                    $attrs = (array) $newConstraint->getDataAttributes();
+                                    $builder->setAttribute('attr', (array) $builder->getAttribute('attr') + $attrs);
+                                } else {
+                                    echo get_class($constraint);
                                 }
                             }
                         }
@@ -63,7 +61,7 @@ class FrontendValidationTypeExtension extends AbstractTypeExtension {
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options) {
-        $view->vars['attr'] = $options['attr'] +  (array) $form->getConfig()->getAttribute('attr');
+        $view->vars['attr'] = $options['attr'] + (array) $form->getConfig()->getAttribute('attr');
     }
 
     public function getExtendedType() {
